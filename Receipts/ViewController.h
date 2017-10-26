@@ -7,8 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <CoreData/CoreData.h>
+#import "Receipt+CoreDataClass.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <NSFetchedResultsControllerDelegate, UITableViewDelegate, UITableViewDataSource>
+
+@property (strong, nonatomic) NSFetchedResultsController<Receipt *> *fetchedResultsController;
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
 
 @end
