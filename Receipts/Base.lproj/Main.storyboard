@@ -120,6 +120,38 @@
                                     <action selector="addTag:" destination="n2H-DR-29X" eventType="touchUpInside" id="jgp-A9-wc1"/>
                                 </connections>
                             </button>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="QMN-Y3-IJh">
+                                <rect key="frame" x="0.0" y="203" width="375" height="216"/>
+                                <date key="date" timeIntervalSinceReferenceDate="530739096.634296">
+                                    <!--2017-10-26 19:31:36 +0000-->
+                                </date>
+                            </datePicker>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tQd-OH-2I0">
+                                <rect key="frame" x="89" y="509" width="60" height="30"/>
+                                <color key="backgroundColor" name="controlShadowColor" catalog="System" colorSpace="catalog"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="xOO-VZ-NLY"/>
+                                </constraints>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" name="alternateSelectedControlTextColor" catalog="System" colorSpace="catalog"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancel:" destination="n2H-DR-29X" eventType="touchUpInside" id="gIn-1c-pcn"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NzS-Jj-uUW">
+                                <rect key="frame" x="226" y="509" width="60" height="30"/>
+                                <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="60" id="oyB-Bf-bhy"/>
+                                </constraints>
+                                <state key="normal" title="Save">
+                                    <color key="titleColor" name="alternateSelectedControlTextColor" catalog="System" colorSpace="catalog"/>
+                                </state>
+                                <connections>
+                                    <action selector="saveReceipt:" destination="n2H-DR-29X" eventType="touchUpInside" id="FNC-Pl-TO9"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -129,19 +161,26 @@
                             <constraint firstItem="wHR-A4-MEA" firstAttribute="centerX" secondItem="o5J-tl-qac" secondAttribute="centerX" id="4Q3-QJ-1VS"/>
                             <constraint firstItem="wHR-A4-MEA" firstAttribute="width" secondItem="0rL-Tk-Bie" secondAttribute="width" id="66B-yU-ZdF"/>
                             <constraint firstItem="wHR-A4-MEA" firstAttribute="top" secondItem="o5J-tl-qac" secondAttribute="top" id="Ayq-wf-nxj"/>
+                            <constraint firstItem="QMN-Y3-IJh" firstAttribute="width" secondItem="0rL-Tk-Bie" secondAttribute="width" id="CSr-k2-zg9"/>
                             <constraint firstItem="o5J-tl-qac" firstAttribute="trailing" secondItem="jHJ-sW-x26" secondAttribute="trailing" constant="8" id="CU7-53-qe9"/>
                             <constraint firstItem="9Qk-g8-R98" firstAttribute="width" secondItem="ghr-xP-pij" secondAttribute="width" id="Czw-4b-Edk"/>
+                            <constraint firstItem="NzS-Jj-uUW" firstAttribute="top" secondItem="QMN-Y3-IJh" secondAttribute="bottom" constant="90" id="JDv-s0-nI4"/>
+                            <constraint firstItem="QMN-Y3-IJh" firstAttribute="top" secondItem="9Qk-g8-R98" secondAttribute="bottom" constant="17" id="JQi-IX-lb7"/>
                             <constraint firstItem="ghr-xP-pij" firstAttribute="leading" secondItem="o5J-tl-qac" secondAttribute="leading" constant="10" id="K1M-6E-FDY"/>
+                            <constraint firstItem="tQd-OH-2I0" firstAttribute="leading" secondItem="o5J-tl-qac" secondAttribute="leading" constant="89" id="QlY-qa-ATe"/>
                             <constraint firstItem="g0Q-B7-shx" firstAttribute="top" secondItem="IQJ-rE-xsZ" secondAttribute="bottom" id="RH3-Wl-PjU"/>
                             <constraint firstItem="CwR-1k-x6g" firstAttribute="width" secondItem="jHJ-sW-x26" secondAttribute="width" id="WvY-bR-fXt"/>
                             <constraint firstItem="IQJ-rE-xsZ" firstAttribute="leading" secondItem="9Qk-g8-R98" secondAttribute="trailing" constant="8" id="YRv-Pq-YEs"/>
                             <constraint firstItem="CwR-1k-x6g" firstAttribute="top" secondItem="jHJ-sW-x26" secondAttribute="bottom" constant="8" id="Z6H-s3-yWO"/>
+                            <constraint firstItem="o5J-tl-qac" firstAttribute="trailing" secondItem="NzS-Jj-uUW" secondAttribute="trailing" constant="89" id="aCA-Oz-DI5"/>
                             <constraint firstItem="g0Q-B7-shx" firstAttribute="leading" secondItem="9Qk-g8-R98" secondAttribute="trailing" constant="8" id="aq8-H6-WbJ"/>
                             <constraint firstItem="ghr-xP-pij" firstAttribute="top" secondItem="wHR-A4-MEA" secondAttribute="bottom" constant="8" id="c4m-FV-PMp"/>
+                            <constraint firstItem="QMN-Y3-IJh" firstAttribute="centerX" secondItem="o5J-tl-qac" secondAttribute="centerX" id="etg-nV-dvc"/>
                             <constraint firstItem="IQJ-rE-xsZ" firstAttribute="width" secondItem="jHJ-sW-x26" secondAttribute="width" id="iuN-7O-XPc"/>
                             <constraint firstItem="jHJ-sW-x26" firstAttribute="leading" secondItem="ghr-xP-pij" secondAttribute="trailing" constant="8" id="kne-rX-abw"/>
                             <constraint firstItem="CwR-1k-x6g" firstAttribute="leading" secondItem="9Qk-g8-R98" secondAttribute="trailing" constant="8" id="ltv-yl-qP1"/>
                             <constraint firstItem="g0Q-B7-shx" firstAttribute="width" secondItem="jHJ-sW-x26" secondAttribute="width" id="o6y-y7-iZM"/>
+                            <constraint firstItem="tQd-OH-2I0" firstAttribute="top" secondItem="QMN-Y3-IJh" secondAttribute="bottom" constant="90" id="qoe-Dh-PYQ"/>
                             <constraint firstItem="IQJ-rE-xsZ" firstAttribute="top" secondItem="CwR-1k-x6g" secondAttribute="bottom" id="uef-Ek-Uhe"/>
                             <constraint firstItem="9Qk-g8-R98" firstAttribute="top" secondItem="ghr-xP-pij" secondAttribute="bottom" constant="8" id="ym9-E2-pQa"/>
                         </constraints>
@@ -151,7 +190,8 @@
                         <outlet property="addNewReceiptControllerTitle" destination="wHR-A4-MEA" id="mqm-zL-W7J"/>
                         <outlet property="amountField" destination="ghr-xP-pij" id="d0P-gn-nDV"/>
                         <outlet property="categoryLabel" destination="jHJ-sW-x26" id="V60-zu-kpK"/>
-                        <outlet property="notField" destination="9Qk-g8-R98" id="hdc-lx-KHQ"/>
+                        <outlet property="datePicker" destination="QMN-Y3-IJh" id="96y-3D-J3j"/>
+                        <outlet property="noteField" destination="9Qk-g8-R98" id="mss-y7-Ylu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8BK-61-3DP" userLabel="First Responder" sceneMemberID="firstResponder"/>

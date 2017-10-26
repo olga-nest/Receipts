@@ -13,7 +13,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *addNewReceiptControllerTitle;
 @property (weak, nonatomic) IBOutlet UILabel *categoryLabel;
 @property (weak, nonatomic) IBOutlet UITextField *amountField;
-@property (weak, nonatomic) IBOutlet UITextField *notField;
+@property (weak, nonatomic) IBOutlet UITextField *noteField;
+@property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
 
 @end
 
@@ -21,7 +22,11 @@
 
 - (IBAction)addTag:(id)sender {
 }
+- (IBAction)cancel:(id)sender {
+}
 
+- (IBAction)saveReceipt:(id)sender {
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
