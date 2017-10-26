@@ -23,6 +23,7 @@
 - (IBAction)addTag:(id)sender {
 }
 - (IBAction)cancel:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)saveReceipt:(id)sender {
