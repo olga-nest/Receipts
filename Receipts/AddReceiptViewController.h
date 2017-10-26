@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Receipt+CoreDataClass.h"
+#import "Tag+CoreDataClass.h"
 
 @interface AddReceiptViewController : UIViewController
 

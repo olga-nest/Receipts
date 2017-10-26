@@ -7,6 +7,7 @@
 //
 
 #import "AddReceiptViewController.h"
+#import "AppDelegate.h"
 
 @interface AddReceiptViewController ()
 
@@ -27,6 +28,20 @@
 }
 
 - (IBAction)saveReceipt:(id)sender {
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    NSPersistentContainer *persistentContainer = appDelegate.persistentContainer;
+    
+    Receipt *receipt = [[Receipt alloc] initWithContext:persistentContainer.viewContext];
+    
+    receipt.amount = [self.amountField.text floatValue];
+    NSLog(@"Saving %f amount", receipt.amount);
+    
+    receipt.note = self.noteField.text;
+    NSLog(@"Saving %@ description", receipt.note);
+    NSLog(@"receipt %@", receipt.description);
+
+    [appDelegate saveContext];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)viewDidLoad {
