@@ -39,17 +39,17 @@
 }
 
 #pragma mark - Segues
-//
-//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-//    if ([[segue identifier] isEqualToString:@"showDetail"]) {
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"addNewSegue"]) {
 //        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
 //        Event *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
 //        DetailViewController *controller = (DetailViewController *)[[segue destinationViewController] topViewController];
 //        [controller setDetailItem:object];
 //        controller.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
 //        controller.navigationItem.leftItemsSupplementBackButton = YES;
-//    }
-//}
+    }
+}
 
 
 #pragma mark - Table View
@@ -96,7 +96,8 @@
 
 
 - (void)configureCell:(UITableViewCell *)cell withEvent:(Receipt *)receipt {
-    //cell.textLabel.text = event.timestamp.description;
+    cell.textLabel.text = receipt.description;
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%f", receipt.amount];
 }
 
 
