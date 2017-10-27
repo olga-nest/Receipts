@@ -60,6 +60,8 @@
     [receipt addTag:self.tags];
     NSLog(@"Number of tags for this receipt %lu", (unsigned long)self.tags.count);
     
+    [self.tags removeAllObjects];
+    
     [appDelegate saveContext];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
