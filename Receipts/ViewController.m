@@ -100,11 +100,10 @@
 }
 
 
-//-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return self.uniqueTags[section];
     
-   return self.arrayWithTagsAndReciepts[section].tag.tagName;
-    
-//}
+}
 
 #pragma mark - Fetched results
 
@@ -158,8 +157,6 @@
             }
         }
     }
-    
-    
     
     NSLog(@"receiptsWithFamilyTag count: %lu", receiptsWithFamilyTag.count);
     NSLog(@"receiptsWithPersonalTag count: %lo", receiptsWithPersonalTag.count);
