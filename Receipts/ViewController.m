@@ -21,6 +21,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self getAllReceipts];
+    [self getAllTags];
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+//    [self getAllReceipts];
+
+    [self.tableView reloadData];
 }
 
 - (void)insertNewObject:(id)sender {
@@ -69,24 +76,21 @@
 
 #pragma mark - Table View
 // TODO!!! from fetched results
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//    return [[self.fetchedResultsController sections] count];
-//}
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return self.tags.count;
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    //id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
-   // return [sectionInfo numberOfObjects];
     return self.receipts.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellId" forIndexPath:indexPath];
-   // Receipt *receipt = [self.fetchedResultsController objectAtIndexPath:indexPath];
     Receipt *receipt = [self.receipts objectAtIndex:indexPath.row];
     cell.textLabel.text = receipt.note;
     cell.detailTextLabel.text = [NSString stringWithFormat:@"%f", receipt.amount];
-//    [self configureCell:cell withEvent:receipt];
+
     return cell;
 }
 
@@ -119,7 +123,7 @@
 }
 
 
-#pragma mark - Fetched results controller
+#pragma mark - Fetched results 332
 
 -(void)getAllReceipts {
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
@@ -128,6 +132,16 @@
     NSManagedObjectContext *context = persistentContainer.viewContext;
     NSFetchRequest *request = [Receipt fetchRequest];
     self.receipts = [context executeFetchRequest:request error:nil];
+}
+
+-(void)getAllTags {
+    AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+    NSPersistentContainer *persistentContainer = appDelegate.persistentContainer;
+    
+    NSManagedObjectContext *context = persistentContainer.viewContext;
+    NSFetchRequest *request = [Tag fetchRequest];
+    self.tags = [context executeFetchRequest:request error:nil];
+
 }
 
 //- (NSFetchedResultsController<Receipt *> *)fetchedResultsController {
