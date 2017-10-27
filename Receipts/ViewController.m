@@ -12,30 +12,27 @@
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-@property (nonatomic, strong) NSArray<Receipt *> *receipts;
-@property (nonatomic, strong) NSArray<Tag *> *tags;
+@property (nonatomic, strong) NSArray <Receipt *> *receipts;
+@property (nonatomic, strong) NSArray <Tag *> *tags;
 @property (nonatomic, strong) NSArray *uniqueTags;
+@property (nonatomic, strong) NSArray *arrayWithTagsAndReciepts;
+
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     
-    
     [super viewDidLoad];
     [self getAllReceipts];
     [self getAllTags];
     [self getUniqueTags];
-    
-    
-
-    
+    [self createArraysForUI];
     
 }
 
 -(void)viewWillAppear:(BOOL)animated {
-//    [self getAllReceipts];
-
+    [super viewWillAppear:animated];
     [self.tableView reloadData];
 }
 
@@ -50,18 +47,8 @@
     NSFetchRequest<Receipt *> *fetchReceiptsRequest = [Receipt fetchRequest];
     self.receipts = [persistentContainer.viewContext executeFetchRequest:fetchReceiptsRequest error:&error];
     error = nil;
-//    NSFetchRequest<Tag *> *fetchTagsRequest = [Tag fetchRequest];
-//    self.tags = [persistentContainer.viewContext executeFetchRequest:fetchTagsRequest error:&error];
-//
-    
-    
-    
-    // If appropriate, configure the new managed object.
-//    newReceipt.timestamp = [NSDate date];
-    
     // Save the context.
-   // NSError *error = nil;
-    if (![context save:&error]) {
+        if (![context save:&error]) {
         // Replace this implementation with code to handle the error appropriately.
         // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
         NSLog(@"Unresolved error %@, %@", error, error.userInfo);
@@ -85,21 +72,33 @@
 
 #pragma mark - Table View
 // TODO!!! from fetched results
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//  return self.tagsSet.count;
-//}
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    NSLog(@"Will create %lu sections with tags: %@", self.uniqueTags.count, self.uniqueTags);
+    return self.uniqueTags.count;
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.receipts.count;
+   // return self.receipts.count;
+    Tag *tag = self.tags[section];
+    NSArray *receipts = tag.receipt.allObjects;
+    
+    return receipts.count;
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellId" forIndexPath:indexPath];
-    Receipt *receipt = [self.receipts objectAtIndex:indexPath.row];
-//    NSArray *tags = receipt.tag.allObjects;
-    cell.textLabel.text = receipt.note;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%f", receipt.amount];
+//    Receipt *receipt = [self.receipts objectAtIndex:indexPath.row];
+
+    Tag *tag = self.tags[indexPath.section];
+    NSArray<Receipt*> *receiptsWithTag = tag.receipt.allObjects;
+    NSLog(@"receiptsWithTag: %@", receiptsWithTag);
+    
+    cell.textLabel.text = receiptsWithTag[indexPath.row].note;
+//
+    
+//    cell.textLabel.text = receipt.note;
+//    cell.detailTextLabel.text = [NSString stringWithFormat:@"%f", receipt.amount];
 
     return cell;
 }
@@ -163,8 +162,37 @@
     NSArray *tagName = [self.tags valueForKey:@"tagName"];
     NSLog(@"%@", tagName);
     
-    NSArray *uniqueTags = [tagName valueForKeyPath:@"@distinctUnionOfObjects.self"];
-    NSLog(@"uniqueTags: %@", uniqueTags);
+    self.uniqueTags = [tagName valueForKeyPath:@"@distinctUnionOfObjects.self"];
+    NSLog(@"uniqueTags: %@", self.uniqueTags);
     }
+//TODO: Rename me!
+-(void)createArraysForUI {
+    NSMutableArray *receiptsWithFamilyTag = [NSMutableArray new];
+    NSMutableArray *receiptsWithPersonalTag = [NSMutableArray new];
+    NSMutableArray *receiptsWithBusinessTag = [NSMutableArray new];
+    
+    for (Receipt *receipt in self.receipts) {
+        NSArray *tagsForThisReceipt = receipt.tag.allObjects;
+        for (int i = 0; i < tagsForThisReceipt.count; i++) {
+            Tag *tag = [tagsForThisReceipt objectAtIndex:i];
+            if ([tag.tagName isEqualToString:@"Family"]) {
+                [receiptsWithFamilyTag addObject:receipt];
+            } else if ([tag.tagName isEqualToString:@"Personal"]) {
+                [receiptsWithPersonalTag addObject:receipt];
+            } else if ([tag.tagName isEqualToString:@"Business"]) {
+                [receiptsWithBusinessTag addObject:receipt];
+            }
+        }
+    }
+    
+    
+    
+    NSLog(@"receiptsWithFamilyTag count: %lu", receiptsWithFamilyTag.count);
+    NSLog(@"receiptsWithPersonalTag count: %lo", receiptsWithPersonalTag.count);
+    NSLog(@"receiptsWithBusinessTag count: %lu", receiptsWithBusinessTag.count);
+    
+    self.arrayWithTagsAndReciepts = @[receiptsWithFamilyTag, receiptsWithPersonalTag, receiptsWithBusinessTag];
+    
+}
 
 @end
