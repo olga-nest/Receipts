@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "AppDelegate.h"
+#import "ReceiptTableViewCell.h"
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -41,7 +42,6 @@
     NSPersistentContainer *persistentContainer = appDelegate.persistentContainer;
     
     NSManagedObjectContext *context = [self.fetchedResultsController managedObjectContext];
-//    Receipt *newReceipt = [[Receipt alloc] initWithContext:context];
     
     NSError *error = nil;
     NSFetchRequest<Receipt *> *fetchReceiptsRequest = [Receipt fetchRequest];
@@ -56,49 +56,23 @@
     }
 }
 
-#pragma mark - Segues
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([[segue identifier] isEqualToString:@"addNewSegue"]) {
-//        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-//        Event *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
-//        DetailViewController *controller = (DetailViewController *)[[segue destinationViewController] topViewController];
-//        [controller setDetailItem:object];
-//        controller.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
-//        controller.navigationItem.leftItemsSupplementBackButton = YES;
-    }
-}
-
 
 #pragma mark - Table View
 // TODO!!! from fetched results
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    NSLog(@"Will create %lu sections with tags: %@", self.uniqueTags.count, self.uniqueTags);
-    return self.uniqueTags.count;
+    NSLog(@"Will create %lu sections", self.arrayWithTagsAndReciepts.count);
+    return self.arrayWithTagsAndReciepts.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-   // return self.receipts.count;
-    Tag *tag = self.tags[section];
-    NSArray *receipts = tag.receipt.allObjects;
-    
-    return receipts.count;
+    return [[self.arrayWithTagsAndReciepts objectAtIndex:section]count];
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellId" forIndexPath:indexPath];
-//    Receipt *receipt = [self.receipts objectAtIndex:indexPath.row];
+    ReceiptTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellId" forIndexPath:indexPath];
 
-    Tag *tag = self.tags[indexPath.section];
-    NSArray<Receipt*> *receiptsWithTag = tag.receipt.allObjects;
-    NSLog(@"receiptsWithTag: %@", receiptsWithTag);
-    
-    cell.textLabel.text = receiptsWithTag[indexPath.row].note;
-//
-    
-//    cell.textLabel.text = receipt.note;
-//    cell.detailTextLabel.text = [NSString stringWithFormat:@"%f", receipt.amount];
+    cell.receipt = [self.arrayWithTagsAndReciepts[indexPath.section] objectAtIndex:indexPath.row];
 
     return cell;
 }
@@ -126,11 +100,11 @@
 }
 
 
-- (void)configureCell:(UITableViewCell *)cell withEvent:(Receipt *)receipt {
-    cell.textLabel.text = receipt.description;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%f", receipt.amount];
-}
-
+//-(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    
+   return self.arrayWithTagsAndReciepts[section].tag.tagName;
+    
+//}
 
 #pragma mark - Fetched results
 
