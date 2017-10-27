@@ -21,7 +21,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" textLabel="osN-In-YHO" detailTextLabel="Afb-jA-joo" style="IBUITableViewCellStyleSubtitle" id="9tz-ZF-B7G">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellId" textLabel="osN-In-YHO" detailTextLabel="Afb-jA-joo" style="IBUITableViewCellStyleSubtitle" id="9tz-ZF-B7G">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9tz-ZF-B7G" id="iwU-aF-kmq">
@@ -52,10 +52,10 @@
                                 </connections>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C4O-YG-FR8">
-                                <rect key="frame" x="254" y="617" width="105" height="30"/>
+                                <rect key="frame" x="275" y="617" width="84" height="30"/>
                                 <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="105" id="CQF-Cr-B5f"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="CQF-Cr-B5f"/>
                                 </constraints>
                                 <state key="normal" title="Add Receipt">
                                     <color key="titleColor" name="alternateSelectedControlTextColor" catalog="System" colorSpace="catalog"/>

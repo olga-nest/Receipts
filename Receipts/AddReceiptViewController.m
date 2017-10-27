@@ -34,6 +34,7 @@
     NSLog(@"Adding %@ tag to tag set", tag.tagName);
     
     [self.tags addObject:tag];
+    [appDelegate saveContext];
 //    self.tags = tempSet;
 }
 
