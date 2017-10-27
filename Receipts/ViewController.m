@@ -25,15 +25,14 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    [self getAllReceipts];
-    [self getAllTags];
-    [self getUniqueTags];
-    [self createArraysForUI];
-    
 }
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    [self getAllReceipts];
+    [self getAllTags];
+    [self getUniqueTags];
+    [self createArraysForUI];
     [self.tableView reloadData];
 }
 
@@ -102,10 +101,9 @@
 
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     return self.uniqueTags[section];
-    
 }
 
-#pragma mark - Fetched results
+#pragma mark - Fetch results
 
 -(void)getAllReceipts {
     AppDelegate *appDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
@@ -114,6 +112,7 @@
     NSManagedObjectContext *context = persistentContainer.viewContext;
     NSFetchRequest *request = [Receipt fetchRequest];
     self.receipts = [context executeFetchRequest:request error:nil];
+    
 }
 
 -(void)getAllTags {
